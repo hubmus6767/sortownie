@@ -1,20 +1,71 @@
-﻿// MergeSortApp.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
-//
-
+﻿
 #include <iostream>
+#include <vector>
 
-int main()
+#include "MergeSort.h"
+
+using namespace std;
+
+/**
+ * @brief Wyświetla zawartość tablicy.
+ *
+ * @tparam T Typ elementów tablicy.
+ * @param array Tablica przeznaczona do wyświetlenia.
+ */
+template <typename T>
+void printArray(const vector<T>& array)
 {
-    std::cout << "Hello World!\n";
+    for (const T& element : array)
+    {
+        cout << element << " ";
+    }
+
+    cout << endl;
 }
 
-// Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
-// Debugowanie programu: F5 lub menu Debugowanie > Rozpocznij debugowanie
+/**
+ * @brief Funkcja główna programu.
+ *
+ * Tworzy dwie tablice różnych typów:
+ * int oraz double.
+ *
+ * Następnie sortuje je przy użyciu szablonowej klasy MergeSort.
+ *
+ * @return 0, jeśli program zakończył działanie poprawnie.
+ */
+int main()
+{
+    // Tablica zawierająca liczby całkowite.
+    vector<int> intArray = {
+        10, 5, 8, 2, 15, 1, 20, 3
+    };
 
-// Porady dotyczące rozpoczynania pracy:
-//   1. Użyj okna Eksploratora rozwiązań, aby dodać pliki i zarządzać nimi
-//   2. Użyj okna programu Team Explorer, aby nawiązać połączenie z kontrolą źródła
-//   3. Użyj okna Dane wyjściowe, aby sprawdzić dane wyjściowe kompilacji i inne komunikaty
-//   4. Użyj okna Lista błędów, aby zobaczyć błędy
-//   5. Wybierz pozycję Projekt > Dodaj nowy element, aby utworzyć nowe pliki kodu, lub wybierz pozycję Projekt > Dodaj istniejący element, aby dodać istniejące pliku kodu do projektu
-//   6. Aby w przyszłości ponownie otworzyć ten projekt, przejdź do pozycji Plik > Otwórz > Projekt i wybierz plik sln
+    // Tablica zawierająca liczby zmiennoprzecinkowe.
+    vector<double> doubleArray = {
+        5.5, 2.2, 8.8, -1.5, 3.3, 0.7
+    };
+
+    // Wyświetlenie tablicy int przed sortowaniem.
+    cout << "Tablica int przed sortowaniem:" << endl;
+    printArray(intArray);
+
+    // Wyświetlenie tablicy double przed sortowaniem.
+    cout << "\nTablica double przed sortowaniem:" << endl;
+    printArray(doubleArray);
+
+    // Sortowanie tablicy liczb całkowitych.
+    MergeSort<int>::sort(intArray);
+
+    // Sortowanie tablicy liczb zmiennoprzecinkowych.
+    MergeSort<double>::sort(doubleArray);
+
+    // Wyświetlenie posortowanej tablicy int.
+    cout << "\nTablica int po sortowaniu:" << endl;
+    printArray(intArray);
+
+    // Wyświetlenie posortowanej tablicy double.
+    cout << "\nTablica double po sortowaniu:" << endl;
+    printArray(doubleArray);
+
+    return 0;
+}
